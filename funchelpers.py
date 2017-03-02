@@ -30,5 +30,6 @@ class TextProgress(object):
         try:    
             return(next(self._iter))
         except StopIteration:
+            print()
             raise
 
