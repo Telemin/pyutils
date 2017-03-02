@@ -5,7 +5,7 @@ from ipywidgets import FloatProgress
 from IPython.display import display
 
 class ProgressBar(object):
-    def __init__(self, iterable, seconds=1, length=None):
+    def __init__(self, iterable, length=None):
         if not hasattr(iterable, '__iter__'):
             raise AttributeError("Passed non iterable type {}".format(type(iterable)))
         self._iterable = iterable
@@ -19,7 +19,7 @@ class ProgressBar(object):
                                 "__len__ method.")
 
     def __iter__(self):
-        self._pbar = FloatProgress(min=0,max=self._len)
+        self._pbar = FloatProgress(min=0,max=self._len+1)
         display(self._pbar)             
         self._pbar.value = 0
         self._iter = iter(self._iterable)
@@ -30,6 +30,7 @@ class ProgressBar(object):
         try:    
             return(next(self._iter))
         except StopIteration:
+            self._pbar.value += 1
             self._pbar.close()
             raise
 
