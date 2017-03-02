@@ -20,4 +20,5 @@ def NonUniformCentralDifference(y,x,pad=True):
         y0 = y[:-1]
         y1 = y[-1]
 
-    return (y1 - y0)/(x1-x0)
+    
+    return(x0 + (x1-x0)/2), (y1 - y0)/(x1-x0)
