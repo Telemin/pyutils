@@ -25,8 +25,8 @@ class TextProgress(object):
         return(self)
 
     def __next__(self):
-        self._count += 1
         print("\r{}/{}".format(self._count,self._len), end="")
+        self._count += 1
         try:    
             return(next(self._iter))
         except StopIteration:

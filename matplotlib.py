@@ -1,6 +1,7 @@
 import matplotlib
 import matplotlib.cm as mplcm
 import numpy as np
+import cycler
 from husl import husl_to_rgb
 
 def colorcycler(i,cmap=mplcm.gist_rainbow):
@@ -13,10 +14,9 @@ def colorcycler(i,cmap=mplcm.gist_rainbow):
         return(cmap((j/(i+np.pi/10))%1))
     return(cycler)
 
-def huslcycler(i,s=95,l=50):
-    def cycler(j):
-        return(husl_to_rgb(360*(j/i),s,l))
-    return(cycler)
+def huslcycler(i,s=95,l=50,o=0):
+    cycle = cycler.cycler(color=[husl_to_rgb(360*((o + j/i)%1),s,l) for j in range(i)])
+    return(cycle)
 
 
 def recolor_by_label(ax, fontsize=None):
