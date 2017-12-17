@@ -19,9 +19,9 @@ class ProgressBar(object):
                                 "__len__ method.")
 
     def __iter__(self):
-        self._pbar = FloatProgress(min=0,max=self._len+1)
+        self._pbar = FloatProgress(min=0,max=self._len)
         display(self._pbar)             
-        self._pbar.value = 0
+        self._pbar.value = -1
         self._iter = iter(self._iterable)
         return(self)
 
