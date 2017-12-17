@@ -14,7 +14,8 @@ def colorcycler(i,cmap=mplcm.gist_rainbow):
         return(cmap((j/(i+np.pi/10))%1))
     return(cycler)
 
-def huslcycler(i,s=95,l=50,o=0):
+def huslcycler(i,s=95,l=50,o=256/360):
+    i = 3 if i<3 else i
     cycle = cycler.cycler(color=[husl_to_rgb(360*((o + j/i)%1),s,l) for j in range(i)])
     return(cycle)
 
